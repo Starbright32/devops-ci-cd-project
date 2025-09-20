@@ -1,4 +1,5 @@
 import pytest
+import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -21,6 +22,8 @@ def test_greeting_with_name(driver):
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(greeting_page.greeting_heading)
     )
+
+    time.sleep(1)
 
     # Verify the greeting on the next page
     assert "Hello, Alice!" in greeting_page.get_greeting_text()
