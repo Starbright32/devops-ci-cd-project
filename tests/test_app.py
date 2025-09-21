@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from tests.pages.index_page import IndexPage
 from tests.pages.greeting_page import GreetingPage
+from tests.pages.about_page import AboutPage
 
 def test_greeting_with_name(driver):
     # Instantiate the page objects
@@ -27,3 +28,21 @@ def test_greeting_with_name(driver):
 
     # Verify the greeting on the next page
     assert "Hello, Alice!" in greeting_page.get_greeting_text()
+
+def test_navigating_to_about_page(driver):
+    # Instantiate the page objects
+    index_page = IndexPage(driver)
+    about_page = AboutPage(driver)
+
+    # Navigate to the Flask application's home page
+    driver.get("http://127.0.0.1:5000")
+
+    # Perform actions using the page object methods
+    index_page.click_about()
+
+    # Wait for the greeting element to be visible before asserting
+    time.sleep(2)
+
+    # Verify the about page was navigated to 
+    assert "About Our Project" in about_page.get_about_header_text()
+

@@ -6,6 +6,11 @@ class IndexPage:
         self.driver = driver
         self.name_input = (By.ID, "name")
         self.submit_button = (By.CSS_SELECTOR, "button[type='submit']")
+        self.about_link = (By.CSS_SELECTOR, "body > a")
+    
+    def click_about(self):
+        about_element = self.driver.find_element(*self.about_link)
+        about_element.click()
 
     def enter_name(self, name):
         """Enters a name into the input field."""
